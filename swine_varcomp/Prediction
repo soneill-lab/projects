@@ -9,19 +9,19 @@ for (i in 1:10) {
   NBA_temp<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/yd.Landrace.NBA_add.CV.Adj",".variance.components.model.csv", sep=""), header = T, sep=",")
   NBA_temp_N<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/Landrace_NBA_N", i,".csv", sep=""), header = F)
   
-  NBA_temp<- NBA_temp[order(NBA_temp$ID),]
+  NBA_temp<- NBA_temp[order(NBA_temp$EGO),]
   NBA_temp_N<- NBA_temp_N[order(NBA_temp_N$V1),]
   
   # Additive effect
-  add_temp_T<- add[add$V1 %in% NBA_temp$ID]
+  add_temp_T<- add[add$V1 %in% NBA_temp$EGO]
   add_temp_T<- add_temp_T[order(add_temp_T$V1),]
-  add_temp_T2<- select_if(add_temp_T, colnames(add_temp_T) %in% NBA_temp$ID)
+  add_temp_T2<- select_if(add_temp_T, colnames(add_temp_T) %in% NBA_temp$EGO)
   add_temp_T2<- add_temp_T2 %>% select(sort(names(add_temp_T2)))
   A_txt<- as.matrix(add_temp_T2)
   
   add_temp_N<- add[add$V1 %in% NBA_temp_N]
   add_temp_N<- add_temp_N[order(add_temp_N$V1),]
-  add_temp_N2<- select_if(add_temp_N, colnames(add_temp_N) %in% NBA_temp$ID)
+  add_temp_N2<- select_if(add_temp_N, colnames(add_temp_N) %in% NBA_temp$EGO)
   add_temp_N2<- add_temp_N2 %>% select(sort(names(add_temp_N2)))
   A_nxt<- as.matrix(add_temp_N2)
   
