@@ -1,6 +1,6 @@
 library(dplyr)
 library(data.table)
-
+##Prediction for NBA Trait##
 add<- fread("Landrace.add.grm.txt")
 
 Acc<- data.frame(matrix(NA, nrow = 10, ncol = 1))
