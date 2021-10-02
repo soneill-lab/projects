@@ -49,7 +49,7 @@ for (i in 1:10) {
   NBA_Adj<- as.data.frame(NBA_Adj)
   NBA_Adj<- NBA_Adj[,c("ID","F_FIT","NBA_S")]
   names(NBA_Adj)[1]<- "ID"
-  y_temp<- merge(y_temp, NBA_Adj, by="ID")
+  y_temp<- merge(y_temp, NBA_Adj, by="EGO")
   y_temp$NBA_Adj<- y_temp$NBA - y_temp$F_FIT - y_temp$NBA_S
   
   y_temp<- merge(y_temp, p, by="ID")
