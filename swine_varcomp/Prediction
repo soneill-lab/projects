@@ -36,7 +36,7 @@ for (i in 1:10) {
   p<- as.data.frame(p)
   names(p)<- c("ID","PEBV")
   
- # write.table(p, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross/Validation/NBA","_p.csv", sep=""), quote = F, col.names = F, row.names = F)
+ # write.table(p, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/CrossValidation/NBA","_p.csv", sep=""), quote = F, col.names = F, row.names = F)
   
   # get phenotype
   y<- read.table("Landrace_NumberBornAlive_Filtered", header = T, sep = ",")
@@ -45,7 +45,7 @@ for (i in 1:10) {
   y_temp<- merge(NBA_temp_N, y, by="ID")
   
   # adjust by F
-  NBA_Adj<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross/Validation/Landrace.NBA_add.CV.Adj.variance.components.model.csv", header = T, sep=",")
+  NBA_Adj<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/Landrace.NBA_add.CV.Adj.variance.components.model.csv", header = T, sep=",")
   NBA_Adj<- as.data.frame(NBA_Adj)
   NBA_Adj<- NBA_Adj[,c("ID","F_FIT","NBA_S")]
   names(NBA_Adj)[1]<- "ID"
@@ -53,7 +53,7 @@ for (i in 1:10) {
   y_temp$NBA_Adj<- y_temp$NBA - y_temp$F_FIT - y_temp$NBA_S
   
   y_temp<- merge(y_temp, p, by="EGO")
-  write.table(y_temp, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross/Validation/NBA","_y.csv", sep=""), quote = F, col.names = F, row.names = F, sep=",")
+  write.table(y_temp, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/NBA","_y.csv", sep=""), quote = F, col.names = F, row.names = F, sep=",")
   
   
   corr<- cor(y_temp$PEBV, y_temp$NBA_Adj, use="p")
@@ -63,5 +63,5 @@ for (i in 1:10) {
   
 }
 
-write.table(Acc, file="/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross/Validation/NBA_a/NBA_Acc.csv", quote = F, col.names = F, row.names = F, sep=",")
+write.table(Acc, file="/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/NBA_a/NBA_Acc.csv", quote = F, col.names = F, row.names = F, sep=",")
 
