@@ -39,7 +39,7 @@ for (i in 1:10) {
  # write.table(p, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/CrossValidation/NBA","_p.csv", sep=""), quote = F, col.names = F, row.names = F)
   
   # get phenotype
-  y<- read.table("Landrace_NumberBornAlive_Filtered", header = T, sep = ",")
+  y<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/Landrace_NumberBornAlive_Filtered", header = T, sep = ",")
   NBA_temp_N<- as.data.frame(NBA_temp_N)
   names(NBA_temp_N)<- "ID"
   y_temp<- merge(NBA_temp_N, y, by="ID")
