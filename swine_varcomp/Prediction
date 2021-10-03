@@ -114,7 +114,7 @@ for (i in 1:10) {
   y_temp<- merge(NBA_temp_N, y, by="ID")
   
   # adjust by F
-  NBA_Adj<- read.table("", header = T, sep=",")
+  NBA_Adj<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/yd.Landrace.NBA_add.CV.Adj", header = T, sep=",")
   NBA_Adj<- as.data.frame(NBA_Adj)
   NBA_Adj<- NBA_Adj[,c("EGO","F_FIT","BF_S")]
   names(NBA_Adj)[1]<- "ID"
@@ -122,7 +122,7 @@ for (i in 1:10) {
   y_temp$NBA_Adj<- y_temp$NBA - y_temp$F_FIT - y_temp$NBA_S
   
   y_temp<- merge(y_temp, p, by="ID")
-  write.table(y_temp, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/yd.Landrace.NBA_add.CV.Adj",i,"_y.csv", sep=""), quote = F, col.names = F, row.names = F, sep=",")
+  write.table(y_temp, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/NBA_A/NBA", i,"_y.csv", sep=""), quote = F, col.names = F, row.names = F, sep=",")
   
   
   corr<- cor(y_temp$PEBV, y_temp$BF_Adj, use="p")
