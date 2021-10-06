@@ -8,7 +8,7 @@ add<- fread("Landrace.add.grm.txt")
 Acc<- data.frame(matrix(NA, nrow = 10, ncol = 1))
 
 for (i in 1:10) {
-  NBA_temp<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/NBA_a/yd.Landrace_NBA_add.CV", i, ".variance.components.model.csv", sep=""), header = T, sep=",")
+  NBA_temp<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/NBA_a/yd.Landrace_NBA_add.CV", ".variance.components.model.csv", sep=""), header = T, sep=",")
   NBA_temp_N<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/NBA_a/Landrace_NBA_N", i, ".csv", sep=""), header = F)
   
   NBA_temp<- NBA_temp[order(NBA_temp$EGO),]
