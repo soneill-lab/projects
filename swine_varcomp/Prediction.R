@@ -31,17 +31,18 @@ for (i in 1:10) {
   a_t<- as.vector(NBA_temp$yd_A)
   a<- A_nxt %*% solve(A_txt) %*% a_t
   
-  #write.table(a, file=paste("/NBA",i,"_a.csv", sep=""), quote = F, col.names = F, row.names = F)
+ write.table(a, file=paste("/NBA","_a.csv", sep=""), quote = F, col.names = F, row.names = F)
   
   p<- a 
   p<- cbind(add_temp_N$V1, p)
   p<- as.data.frame(p)
   names(p)<- c("ID","PEBV")
   
- # write.table(p, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/NBA_a/NBA",i,"_p.csv", sep=""), quote = F, col.names = F, row.names = F)
+ write.table(p, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/NBA_a/NBA",i,"_p.csv", sep=""), quote = F, col.names = F, row.names = F)
   
   # get phenotype
   y<- read.table("Landrace_NumberBornAlive_Filtered", header = T, sep = ",")
+  names(y)<- c("ID", "yd")
  NBA_temp_N<- as.data.frame(NBA_temp_N)
   names(NBA_temp_N)<- "ID"
   y_temp<- merge(NBA_temp_N, y, by="ID")
