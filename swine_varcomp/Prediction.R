@@ -31,7 +31,7 @@ for (i in 1:10) {
   a_t<- as.vector(NBA_temp$yd_A)
   a<- A_nxt %*% solve(A_txt) %*% a_t
   
- write.table(a, file=paste("/NBA","_a.csv", sep=""), quote = F, col.names = F, row.names = F)
+ write.table(a, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/NBA_a/NBA","_a.csv", sep=""), quote = F, col.names = F, row.names = F)
   
   p<- a 
   p<- cbind(add_temp_N$V1, p)
