@@ -53,7 +53,7 @@ for (i in 1:10) {
   NBA_Adj<- NBA_Adj[,c("EGO","F_FIT","yd_S")]
   names(NBA_Adj)[1]<- "ID"
   y_temp<- merge(y_temp, NBA_Adj, by="ID")
-  y_temp$NBA_Adj<- y_temp$NBA - y_temp$F_FIT - y_temp$yd_S
+  y_temp$NBA_Adj<- y_temp$yd - y_temp$F_FIT - y_temp$yd_S
   
   y_temp<- merge(y_temp, p, by="ID")
   write.table(y_temp, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/NBA_a/NBA",i,"_y.csv", sep=""), quote = F, col.names = F, row.names = F, sep=",")
