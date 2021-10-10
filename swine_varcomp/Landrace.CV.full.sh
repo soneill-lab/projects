@@ -9,7 +9,7 @@ done
 
 
 # Get inbreeding effect
-./mmap --ped pedigree.file --phenotype_filename Landrace_NumberBornAlive_Filtered --trait NBA --covariate_filename Landrace.IBC.csv --covariates F  --estimate_variance_components --variance_component_filename  Landrace.add.grm.bin Landrace.dom.grm.bin Landrace.AA.grm.bin Landrace.AD.grm.bin Landrace.DD.grm.bin Landrace.sow.i.bin --variance_component_label A D AA AD DD S --file_suffix Landrace.NBA_full.CV.Adj --num_mkl_threads 20 --num_em_reml_burnin 2 --use_em_ai_reml --single_pedigree --use_dpotrs
+./mmap --ped pedigree.file --phenotype_filename Landrace_NumberBornAlive_Filtered --trait yd --covariate_filename Landrace.IBC.csv --covariates F  --estimate_variance_components --variance_component_filename  Landrace.add.grm.bin Landrace.dom.grm.bin Landrace.AA.grm.bin Landrace.AD.grm.bin Landrace.DD.grm.bin Landrace.sow.i.bin --variance_component_label A D AA AD DD S --file_suffix Landrace.NBA_full.CV.Adj --num_mkl_threads 20 --num_em_reml_burnin 2 --use_em_ai_reml --single_pedigree --use_dpotrs
 
 
 
