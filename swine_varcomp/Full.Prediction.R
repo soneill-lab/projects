@@ -118,7 +118,7 @@ for (i in 1:10) {
   y_temp<- merge(NBA_temp_N, y, by="ID")
   
   # adjust by F
-  NBA_Adj<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/NBA_full.CV.Adj.variance.components.model.csv", header = T, sep=",")
+  NBA_Adj<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/yd.Landrace.NBA_full.CV.Adj.variance.components.model.csv", header = T, sep=",")
   NBA_Adj<- as.data.frame(NBA_Adj)
   NBA_Adj<- NBA_Adj[,c("EGO","F_FIT","BF_S")]
   names(NBA_Adj)<- c("ID","F","S")
