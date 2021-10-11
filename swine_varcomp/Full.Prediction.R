@@ -123,7 +123,7 @@ for (i in 1:10) {
   NBA_Adj<- NBA_Adj[,c("EGO","F_FIT","yd_S")]
   names(NBA_Adj)<- c("ID","F","S")
   y_temp<- merge(y_temp, NBA_Adj, by="ID")
-  y_temp$NBA_Adj<- y_temp$NBA - y_temp$F -y_temp$S
+  y_temp$NBA_Adj<- y_temp$yd - y_temp$F -y_temp$S
 
   
   y_temp<- merge(y_temp, p, by="ID")
