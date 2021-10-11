@@ -130,8 +130,8 @@ for (i in 1:10) {
   
   # write.table(y_temp, file=paste(/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/NBA_F/NBA_",i,"_y.csv", sep=""), quote = F, col.names = F, row.names = F, sep=",")
   # 
-  corr<- cor(y_temp$PEBV, y_temp$BF_Adj, use="p")
-  corr2<- cor(y_temp$AEBV, y_temp$BF_Adj, use="p")
+  corr<- cor(y_temp$PEBV, y_temp$NBA_Adj, use="p")
+  corr2<- cor(y_temp$AEBV, y_temp$NBA_Adj, use="p")
   print(corr)
   print(corr2)
   
