@@ -9,11 +9,11 @@ for (i in 1:10) {
   ADG_temp<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_A/yd.Landrace.ADG_add.CV", i, ".variance.components.model.csv", sep=""), header = T, sep=",")
   ADG_temp_N<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_A/Landrace.ADG_N", i, ".csv", sep=""), header = F)
   
-  ADG_temp<- NBA_temp[order(NBA_temp$EGO),]
+  ADG_temp<- ADG_temp[order(ADG_temp$EGO),]
   ADG_temp_N<- ADG_temp_N[order(ADG_temp_N$V1),]
   
   # Additive effect
-  add_temp_T<- add[add$V1 %in% NBA_temp$EGO]
+  add_temp_T<- add[add$V1 %in% ADG_temp$EGO]
   add_temp_T<- add_temp_T[order(add_temp_T$V1),]
   add_temp_T2<- select_if(add_temp_T, colnames(add_temp_T) %in% ADG_temp$EGO)
   add_temp_T2<- add_temp_T2 %>% select(sort(names(add_temp_T2)))
