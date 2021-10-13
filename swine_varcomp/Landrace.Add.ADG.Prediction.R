@@ -24,7 +24,7 @@ for (i in 1:10) {
   add_temp_N2<- select_if(add_temp_N, colnames(add_temp_N) %in% ADG_temp$EGO)
   add_temp_N2<- add_temp_N2 %>% select(sort(names(add_temp_N2)))
   A_nxt<- as.matrix(add_temp_N2)
-  yd.
+  
   
   a_t<- as.vector(ADG_temp$yd_A)
   a<- A_nxt %*% solve(A_txt) %*% a_t
