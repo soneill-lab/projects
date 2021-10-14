@@ -6,8 +6,8 @@ add<- fread("Landrace.add.grm.txt")
 Acc<- data.frame(matrix(NA, nrow = 10, ncol = 1))
 
 for (i in 1:10) {
-  BF_temp<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_A/yd.Landrace.BF_add.CV", i, ".variance.components.model.csv", sep=""), header = T, sep=",")
-  BF_temp_N<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_A/Landrace.BF_N", i, ".csv", sep=""), header = F)
+  BF_temp<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/yd.Landrace.BF_add.CV", i, ".variance.components.model.csv", sep=""), header = T, sep=",")
+  BF_temp_N<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/Landrace.BF_N", i, ".csv", sep=""), header = F)
   
   BF_temp<- BF_temp[order(BF_temp$EGO),]
   BF_temp_N<- BF_temp_N[order(BF_temp_N$V1),]
