@@ -10,7 +10,7 @@ for (i in 1:10) {
   F_TeatCount_temp_N<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/Landrace.F_TeatCount_N", i, ".csv", sep=""), header = F)
   
   F_TeatCount_temp<- F_TeatCount_temp[order(F_TeatCount_temp$EGO),]
-  Losses_temp_N<- Losses_temp_N[order(Losses_temp_N$V1),]
+  F_TeatCount<- F_TeatCount[order(F_TeatCount$V1),]
   
   # Additive effect
   add_temp_T<- add[add$V1 %in% F_TeatCount_temp$EGO]
