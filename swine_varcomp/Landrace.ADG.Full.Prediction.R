@@ -43,7 +43,7 @@ for (i in 1:10) {
   
   foi_temp_N<- foi[foi$V1 %in% NBA_temp_N]
   foi_temp_N<- foi_temp_N[order(foi_temp_N$V1),]
-  foi_temp_N2<- select_if(foi_temp_N, colnames(foi_temp_N) %in% NBA_temp$EGO)
+  foi_temp_N2<- select_if(foi_temp_N, colnames(foi_temp_N) %in% ADG_temp$EGO)
   foi_temp_N2<- foi_temp_N2 %>% select(sort(names(foi_temp_N2)))
   F_nxt<- as.matrix(foi_temp_N2)
   
@@ -66,7 +66,7 @@ for (i in 1:10) {
   AD_nxt<- as.matrix(ad_temp_N2)
   
   
-  ad_t<- as.vector(NBA_temp$yd_AD)
+  ad_t<- as.vector(ADG_temp$yd_AD)
   diag(AD_txt)= diag(AD_txt) + 1e-6
   axd<- AD_nxt %*% solve(AD_txt, ad_t)
   
@@ -102,7 +102,7 @@ for (i in 1:10) {
   D_nxt<- as.matrix(dom_temp_N2)
   
   
-  d_t<- as.vector(NBA_temp$yd_D)
+  d_t<- as.vector(ADG_temp$yd_D)
   diag(D_txt)= diag(D_txt) + 1e-6
   d<- D_nxt %*% solve(D_txt, d_t)
   
