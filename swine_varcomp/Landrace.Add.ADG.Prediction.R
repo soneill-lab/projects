@@ -27,7 +27,8 @@ for (i in 1:10) {
   
   
   a_t<- as.vector(ADG_temp$yd_A)
-  a<- A_nxt %*% solve(A_txt) %*% a_t
+  diag(A_txt) = diag(A_txt) + 1e-6
+  a<- A_nxt %*% solve(A_txt, a_t)
   
  write.table(a, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_A/ADG","_a.csv", sep=""), quote = F, col.names = F, row.names = F)
   
@@ -46,7 +47,7 @@ for (i in 1:10) {
   y_temp<- merge(ADG_temp_N, y, by="ID")
   
   # adjust by F
-  ADG_Adj<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_a/yd.Landrace.ADG_add.CV.Adj.variance.components.model.csv", header = T, sep=",")
+  ADG_Adj<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_A/yd.Landrace.ADG_add.CV.Adj.variance.components.model.csv", header = T, sep=",")
   ADG_Adj<- as.data.frame(ADG_Adj)
   ADG_Adj<- ADG_Adj[,c("EGO","F_FIT","yd_S")]
   names(ADG_Adj)[1]<- "ID"
