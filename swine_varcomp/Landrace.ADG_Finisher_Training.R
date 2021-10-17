@@ -1,6 +1,6 @@
 library(dplyr)
 
-ADG_Finisher<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/Landrace_ADG_Filtered", header=TRUE, sep=",")
+ADG_Finisher<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_Finisher_A/Landrace_ADG_Filtered", header=TRUE, sep=",")
 
 for (i in 1:10){
   temp<- ADG_Finisher[(1563*(i-1)+1):(1563*i),]  
