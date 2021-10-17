@@ -27,7 +27,8 @@ for (i in 1:10) {
   
   
   a_t<- as.vector(BF_temp$yd_A)
-  a<- A_nxt %*% solve(A_txt) %*% a_t
+  diag(A_txt) = diag(A_txt) + 1e-6
+  a<- A_nxt %*% solve(A_txt, a_t)
   
  write.table(a, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/BF","_a.csv", sep=""), quote = F, col.names = F, row.names = F)
   
