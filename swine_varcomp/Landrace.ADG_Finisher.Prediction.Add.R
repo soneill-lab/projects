@@ -9,7 +9,7 @@ for (i in 1:10) {
   ADG_Finisher_temp<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_Finisher_A/yd.Landrace.ADG_Finisher_add.CV", i, ".variance.components.model.csv", sep=""), header = T, sep=",")
   ADG_Finisher_temp_N<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_Finisher_A/Landrace.ADG_Finisher_N", i, ".csv", sep=""), header = F)
   
-  ADG_Finisher_temp<- ADG_FInisher_temp[order(ADG_Finisher_temp$EGO),]
+  ADG_Finisher_temp<- ADG_Finisher_temp[order(ADG_Finisher_temp$EGO),]
   ADG_Finisher_temp_N<- ADG_Finisher_temp_N[order(ADG_Finisher_temp_N$V1),]
   
   # Additive effect
@@ -45,7 +45,7 @@ for (i in 1:10) {
  ADG_Finisher_temp_N<- as.data.frame(ADG_Finisher_temp_N)
   names(ADG_Finisher_temp_N)<- "ID"
   y_temp<- merge(ADG_Finisher_temp_N, y, by="ID")
-  
+ 
   # adjust by F
   ADG_Finisher_Adj<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_Finisher_A/yd.Landrace.ADG_Finisher_add.CV.Adj.variance.components.model.csv", header = T, sep=",")
   ADG_Finisher_Adj<- as.data.frame(ADG_Finisher_Adj)
