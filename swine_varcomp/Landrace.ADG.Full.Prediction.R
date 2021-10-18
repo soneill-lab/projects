@@ -10,11 +10,11 @@ dd<- fread("Landrace.DD.grm.txt")
 Acc<- data.frame(matrix(NA, nrow = 10, ncol = 2))
 
 for (i in 1:10) {
-  ADG_temp<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_F/yd.Landrace_ADG_full.CV",i,".variance.components.model.csv", sep=""), header = T, sep=",")
-  ADG_temp_N<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_F/Landrace_ADG_N",i,".csv", sep=""), header = F)
+  ADG_temp<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/yd.Landrace.ADG_full.CV",i,".variance.components.model.csv", sep=""), header = T, sep=",")
+  ADG_temp_N<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/Landrace.ADG_N",i,".csv", sep=""), header = F)
   
- ADG_temp<- ADG_temp[order(ADG_temp$EGO),]
- ADG_temp_N<- ADG_temp_N[order(ADG_temp_N$V1),]
+  ADG_temp<- ADG_temp[order(ADG_temp$EGO),]
+  ADG_temp_N<- ADG_temp_N[order(ADG_temp_N$V1),]
   
   # Additive effect
   add_temp_T<- add[add$V1 %in% ADG_temp$EGO]
@@ -31,8 +31,7 @@ for (i in 1:10) {
   
   
   a_t<- as.vector(ADG_temp$yd_A)
-  diag(A_txt) = diag(A_txt) + 1e-6
-  a<- A_nxt %*% solve(A_txt,a_t)
+  a<- A_nxt %*% solve(A_txt) %*% a_t
   
   # AA effect
   foi_temp_T<- foi[foi$V1 %in% ADG_temp$EGO]
@@ -41,7 +40,7 @@ for (i in 1:10) {
   foi_temp_T2<- foi_temp_T2 %>% select(sort(names(foi_temp_T2)))
   F_txt<- as.matrix(foi_temp_T2)
   
-  foi_temp_N<- foi[foi$V1 %in% NBA_temp_N]
+  foi_temp_N<- foi[foi$V1 %in% ADG_temp_N]
   foi_temp_N<- foi_temp_N[order(foi_temp_N$V1),]
   foi_temp_N2<- select_if(foi_temp_N, colnames(foi_temp_N) %in% ADG_temp$EGO)
   foi_temp_N2<- foi_temp_N2 %>% select(sort(names(foi_temp_N2)))
@@ -49,8 +48,7 @@ for (i in 1:10) {
   
   
   f_t<- as.vector(ADG_temp$yd_AA)
-  diag(F_txt) = diag(F_txt) + 1e-6
-  f<- F_nxt %*% solve(F_txt, f_t)
+  f<- F_nxt %*% solve(F_txt) %*%f_t
   
   # AD effect
   ad_temp_T<- ad[ad$V1 %in% ADG_temp$EGO]
@@ -62,13 +60,12 @@ for (i in 1:10) {
   ad_temp_N<- ad[ad$V1 %in% ADG_temp_N]
   ad_temp_N<- ad_temp_N[order(ad_temp_N$V1),]
   ad_temp_N2<- select_if(ad_temp_N, colnames(ad_temp_N) %in% ADG_temp$EGO)
-  ad_temp_N2<- ad_temp_N2 %>% select(sort(names(ad_temp_N2)) 
+  ad_temp_N2<- ad_temp_N2 %>% select(sort(names(ad_temp_N2)))
   AD_nxt<- as.matrix(ad_temp_N2)
   
   
   ad_t<- as.vector(ADG_temp$yd_AD)
-  diag(AD_txt)= diag(AD_txt) + 1e-6
-  axd<- AD_nxt %*% solve(AD_txt, ad_t)
+  axd<- AD_nxt %*% solve(AD_txt) %*%ad_t
   
   # DD effect
   dd_temp_T<- dd[dd$V1 %in% ADG_temp$EGO]
@@ -85,8 +82,7 @@ for (i in 1:10) {
   
   
   dd_t<- as.vector(ADG_temp$yd_DD)
-  diag(DD_txt)= diag(DD_txt) + 1e-6
-  dxd<- DD_nxt %*% solve(DD_txt, dd_t)
+  dxd<- DD_nxt %*% solve(DD_txt) %*%dd_t
   
   # Dominance effect
   dom_temp_T<- dom[dom$V1 %in% ADG_temp$EGO]
@@ -103,7 +99,7 @@ for (i in 1:10) {
   
   
   d_t<- as.vector(ADG_temp$yd_D)
-  diag(D_txt)= diag(D_txt) + 1e-6
+  diag(D_txt)= D_txt + 1e-6
   d<- D_nxt %*% solve(D_txt, d_t)
   
   p<- a + d + f  + axd + dxd
@@ -112,17 +108,17 @@ for (i in 1:10) {
   p<- as.data.frame(p)
   names(p)<- c("ID","PEBV","AEBV")
   
-  write.table(p, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_F/ADG",i,"_p.csv", sep=""), quote = F, col.names = F, row.names = F)
+  write.table(p, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_F",i,"_p.csv", sep=","), quote = F, col.names = F, row.names = F)
   
   # get phenotype
-  y<- read.table("Landrace_ADG_Filtered", header = T, sep = ",")
+  y<- read.table("Landrace_NumberBornAlive_Filtered", header = T, sep = ",")
   ADG_temp_N<- as.data.frame(ADG_temp_N)
   names(ADG_temp_N)<- "ID"
   names(y)<- c("ID", "yd")
   y_temp<- merge(ADG_temp_N, y, by="ID")
   
   # adjust by F
-  ADG_Adj<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_F/yd.Landrace.ADG_full.CV.Adj.variance.components.model.csv", header = T, sep=",")
+  ADG_Adj<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/yd.Landrace.ADG_full.CV.Adj.variance.components.model.csv", header = T, sep=",")
   ADG_Adj<- as.data.frame(ADG_Adj)
   ADG_Adj<- ADG_Adj[,c("EGO","F_FIT","yd_S")]
   names(ADG_Adj)<- c("ID","F","S")
@@ -132,8 +128,8 @@ for (i in 1:10) {
   
   y_temp<- merge(y_temp, p, by="ID")
   
-   write.table(y_temp, file=paste(/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_F/ADG",i,"_y.csv", sep=""), quote = F, col.names = F, row.names = F, sep=",")
-  # 
+  write.table(y_temp, file=paste(/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_F/ADG_",i,"_y.csv", sep=""), quote = F, col.names = F, row.names = F, sep=",")
+  
   corr<- cor(y_temp$PEBV, y_temp$ADG_Adj, use="p")
   corr2<- cor(y_temp$AEBV, y_temp$ADG_Adj, use="p")
   print(corr)
@@ -143,8 +139,4 @@ for (i in 1:10) {
   Acc[i,2]<- corr2
   
 }
-
-
 write.table(Acc, file="/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_F/ADG_Acc_epi.csv", quote = F, col.names = F, row.names = F, sep=",")
-
-
