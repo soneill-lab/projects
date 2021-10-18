@@ -112,7 +112,7 @@ for (i in 1:10) {
   p<- as.data.frame(p)
   names(p)<- c("ID","PEBV","AEBV")
   
- # write.table(p, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_F/ADG",i,"_p.csv", sep=""), quote = F, col.names = F, row.names = F)
+  write.table(p, file=paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_F/ADG",i,"_p.csv", sep=""), quote = F, col.names = F, row.names = F)
   
   # get phenotype
   y<- read.table("Landrace_ADG_Filtered", header = T, sep = ",")
@@ -132,7 +132,7 @@ for (i in 1:10) {
   
   y_temp<- merge(y_temp, p, by="ID")
   
-  # write.table(y_temp, file=paste(/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_F/ADG",i,"_y.csv", sep=""), quote = F, col.names = F, row.names = F, sep=",")
+   write.table(y_temp, file=paste(/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_F/ADG",i,"_y.csv", sep=""), quote = F, col.names = F, row.names = F, sep=",")
   # 
   corr<- cor(y_temp$PEBV, y_temp$ADG_Adj, use="p")
   corr2<- cor(y_temp$AEBV, y_temp$ADG_Adj, use="p")
