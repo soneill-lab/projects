@@ -10,8 +10,8 @@ dd<- fread("Landrace.DD.grm.txt")
 Acc<- data.frame(matrix(NA, nrow = 10, ncol = 2))
 
 for (i in 1:10) {
-  ADG_temp<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_F/yd.Landrace_ADG_Finisher_full.CV",i,".variance.components.model.csv", sep=""), header = T, sep=",")
-  ADG_temp_N<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_F/Landrace_ADG_Finisher_N",i,".csv", sep=""), header = F)
+  ADG_temp<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_Finisher_F/yd.Landrace_ADG_Finisher_full.CV",i,".variance.components.model.csv", sep=""), header = T, sep=",")
+  ADG_temp_N<- read.table(paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/ADG_Finisher_F/Landrace_ADG_Finisher_N",i,".csv", sep=""), header = F)
   
  ADG_temp<- ADG_temp[order(ADG_temp$EGO),]
  ADG_temp_N<- ADG_temp_N[order(ADG_temp_N$V1),]
