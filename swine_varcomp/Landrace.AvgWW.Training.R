@@ -1,6 +1,6 @@
 library(dplyr)
 
-AvgWW<- ADG_Finisher<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/Average_WeaningWeight_A/Landrace_AverageWeaningWeight_Filtered", header=TRUE, sep=",")
+AvgWW<- read.table("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/Average_WeaningWeight_A/Landrace_AverageWeaningWeight_Filtered", header=TRUE, sep=",")
 
 for (i in 1:10){
   temp<- AvgWW[(1563*(i-1)+1):(1563*i),]  
