@@ -12,11 +12,10 @@ if (length(args)==0) {
 
 
 #install.packages('fastmatrix','~/Rlibs', 'https://mirror.las.iastate.edu/CRAN/src/contrib/fastmatrix_0.3-819.tar.gz')
-library(fastmatrix, lib.loc="/home/wolftech/jcheng29/Rlibs")
+library(fastmatrix)
 
 #install.packages('data.table','~/Rlibs','https://mirror.las.iastate.edu/CRAN/src/contrib/data.table_1.14.0.tar.gz')
- library(data.table, lib.loc="/home/wolftech/jcheng29/Rlibs")
-
+ library(data.table)
 
 # read add and dom grm and ID
 add<- fread(args[1])
