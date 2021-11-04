@@ -9,7 +9,7 @@ for (i in 1:10){
 }
 
 for (i in 1:10){
-  temp2<- -temp  
+ temp2<- -(temp)  
   write.table(temp2, paste("/home/varcomp/Landrace_Breed/New_Pipeline/New_Phenotypes/Cross_Validation/New_CV/ADG_A/", "Landrace.ADG_T", i, ".csv", sep=""), quote = F, row.names = F, col.names = F, sep=",")
  
 }
