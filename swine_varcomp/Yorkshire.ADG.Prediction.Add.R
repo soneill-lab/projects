@@ -1,7 +1,7 @@
 library(dplyr)
 library(data.table)
 
-add<- fread("Yorkshire.add.grm.txt")
+add<- fread("yorkshire.add.grm.txt")
 
 Acc<- data.frame(matrix(NA, nrow = 10, ncol = 1))
 
@@ -30,7 +30,7 @@ for (i in 1:10) {
   diag(A_txt) = diag(A_txt) + 1e-6
   a<- A_nxt %*% solve(A_txt, a_t)
   
- write.table(a, file=paste("/home/varcomp/Yorkshire_Breed/Cross_Validation/ADG)_A/ADG","_a.csv", sep=""), quote = F, col.names = F, row.names = F)
+ write.table(a, file=paste("/home/varcomp/Yorkshire_Breed/Cross_Validation/ADG_A/ADG","_a.csv", sep=""), quote = F, col.names = F, row.names = F)
   
   p<- a 
   p<- cbind(add_temp_N$V1, p)
@@ -42,7 +42,7 @@ for (i in 1:10) {
   # get phenotype
   y<- read.table("Yorkshire_ADG_Filtered", header = T, sep = ",")
   names(y)<- c("ID", "yd")
- ADG_Finisher_temp_N<- as.data.frame(ADG_temp_N)
+ ADG_temp_N<- as.data.frame(ADG_temp_N)
   names(ADG_temp_N)<- "ID"
   y_temp<- merge(ADG_temp_N, y, by="ID")
  
@@ -66,3 +66,4 @@ for (i in 1:10) {
 }
 
 write.table(Acc, file="/home/varcomp/Yorkshire_Breed/Cross_Validation/ADG_A/ADG_Acc.csv", quote = F, col.names = F, row.names = F, sep=",")
+
