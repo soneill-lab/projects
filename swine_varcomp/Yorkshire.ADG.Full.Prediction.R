@@ -30,8 +30,10 @@ for (i in 1:10) {
   A_nxt<- as.matrix(add_temp_N2)
   
   
+  
   a_t<- as.vector(ADG_temp$yd_A)
-  a<- A_nxt %*% solve(A_txt) %*% a_t
+  diag(A_txt) = diag(A_txt) + 1e-6
+  a<- A_nxt %*% solve(A_txt,a_t)
   
   # AA effect
   foi_temp_T<- foi[foi$V1 %in% ADG_temp$EGO]
@@ -48,7 +50,8 @@ for (i in 1:10) {
   
   
   f_t<- as.vector(ADG_temp$yd_AA)
-  f<- F_nxt %*% solve(F_txt) %*%f_t
+  diag(F_txt)= diag(F_txt) + 1e-6
+  f<- F_nxt %*% solve(F_txt,f_t)
   
   # AD effect
   ad_temp_T<- ad[ad$V1 %in% ADG_temp$EGO]
@@ -65,7 +68,8 @@ for (i in 1:10) {
   
   
   ad_t<- as.vector(ADG_temp$yd_AD)
-  axd<- AD_nxt %*% solve(AD_txt) %*%ad_t
+  diag(AD_txt)= diag(AD_txt) + 1e-6
+  axd<- AD_nxt %*% solve(AD_txt,ad_t)
   
   # DD effect
   dd_temp_T<- dd[dd$V1 %in% ADG_temp$EGO]
@@ -82,7 +86,8 @@ for (i in 1:10) {
   
   
   dd_t<- as.vector(ADG_temp$yd_DD)
-  dxd<- DD_nxt %*% solve(DD_txt) %*%dd_t
+  diag(DD_txt)= diag(DD_txt) + 1e-6
+  dxd<- DD_nxt %*% solve(DD_txt, dd_t)
   
   # Dominance effect
   dom_temp_T<- dom[dom$V1 %in% ADG_temp$EGO]
@@ -99,7 +104,7 @@ for (i in 1:10) {
   
   
   d_t<- as.vector(ADG_temp$yd_D)
-  diag(D_txt)= D_txt + 1e-6
+  diag(D_txt)= diag(D_txt) + 1e-6
   d<- D_nxt %*% solve(D_txt, d_t)
   
   p<- a + d + f  + axd + dxd
@@ -108,7 +113,7 @@ for (i in 1:10) {
   p<- as.data.frame(p)
   names(p)<- c("ID","PEBV","AEBV")
   
-  write.table(p, file=paste("/home/varcomp/Yorkshire_Breed/Cross_Validation/ADG_F",i,"_p.csv", sep=","), quote = F, col.names = F, row.names = F)
+  write.table(p, file=paste("/home/varcomp/Yorkshire_Breed/Cross_Validation/ADG_F/ADG",i,"_p.csv", sep=","), quote = F, col.names = F, row.names = F)
   
   # get phenotype
   y<- read.table("Yorkshire_ADG_Filtered", header = T, sep = ",")
@@ -118,17 +123,17 @@ for (i in 1:10) {
   y_temp<- merge(ADG_temp_N, y, by="ID")
   
   # adjust by F
-  ADG_Adj<- read.table("/home/varcomp/Yorkshire_Breed/Cross_Validation/yd.Yorkshire.ADG_full.CV.Adj.variance.components.model.csv", header = T, sep=",")
+  ADG_Adj<- read.table("/home/varcomp/Yorkshire_Breed/Cross_Validation/ADG_F/yd.Yorkshire.ADG_full.CV.Adj.variance.components.model.csv", header = T, sep=",")
   ADG_Adj<- as.data.frame(ADG_Adj)
   ADG_Adj<- ADG_Adj[,c("EGO","F_FIT","yd_S")]
   names(ADG_Adj)<- c("ID","F","S")
   y_temp<- merge(y_temp, ADG_Adj, by="ID")
-  y_temp$ADG_Adj<- y_temp$yd - y_temp$F -y_temp$S
+  y_temp$ADG_Adj<- y_temp$yd - y_temp$F - y_temp$S
 
   
   y_temp<- merge(y_temp, p, by="ID")
   
-  write.table(y_temp, file= paste(/home/varcomp/Yorkshire_Breed/Cross_Validation/ADG_F/ADG", i, "_y.csv", sep=""), quote = F, col.names = F, row.names = F, sep=",")
+  write.table(y_temp, file= paste("/home/varcomp/Yorkshire_Breed/Cross_Validation/ADG_F/ADG", i, "_y.csv", sep=""), quote = F, col.names = F, row.names = F, sep=",")
   
   corr<- cor(y_temp$PEBV, y_temp$ADG_Adj, use="p")
   corr2<- cor(y_temp$AEBV, y_temp$ADG_Adj, use="p")
@@ -140,3 +145,4 @@ for (i in 1:10) {
   
 }
 write.table(Acc, file="/home/varcomp/Yorkshire_Breed/Cross_Validation/ADG_F/ADG_Acc_epi.csv", quote = F, col.names = F, row.names = F, sep=",")
+
