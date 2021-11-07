@@ -111,7 +111,7 @@ for (i in 1:10) {
   write.table(p, file=paste("/home/varcomp/Yorkshire_Breed/Cross_Validation/ADG_F",i,"_p.csv", sep=","), quote = F, col.names = F, row.names = F)
   
   # get phenotype
-  y<- read.table("Landrace_NumberBornAlive_Filtered", header = T, sep = ",")
+  y<- read.table("Yorkshire_ADG_Filtered", header = T, sep = ",")
   ADG_temp_N<- as.data.frame(ADG_temp_N)
   names(ADG_temp_N)<- "ID"
   names(y)<- c("ID", "yd")
