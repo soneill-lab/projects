@@ -1,15 +1,8 @@
 library(dplyr)
 library(data.table)
 
-add<- fread("Landrace.add.grm.txt")
+add<- fread("yorkshire.add.grm.txt")
 
-Acc<- data.frame(matrix(NA, nrow = 10, ncol = 1))
-
-for (i in 1:10) {
-  library(dplyr)
-library(data.table)
-
-add<- fread("Landrace.add.grm.txt")
 
 Acc<- data.frame(matrix(NA, nrow = 10, ncol = 1))
 
