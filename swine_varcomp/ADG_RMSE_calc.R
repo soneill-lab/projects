@@ -9,4 +9,4 @@ temp_cor2 <- rmse(ADG_temp[,7], ADG_temp[,5])
 result[i,1] <- temp_cor1
 result[i,2] <- temp_cor2
 }  
-write.csv(result, file="ADG_RMSE", row.names=FALSE)
+write.csv(result, file="ADG_RMSE.csv", row.names=FALSE)
