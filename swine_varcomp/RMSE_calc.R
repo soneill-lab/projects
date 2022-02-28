@@ -18,9 +18,9 @@ ADG_temp<- read.table(paste("/home/varcomp/Yorkshire_Cross_Validation/",trt[t], 
 temp_cor1 <- rmse(ADG_temp[,6], ADG_temp[,5])
 result[i+10*(t-1),3] <- temp_cor1
   
-result[i+10*(t-1),4] <- t
+result[i+10*(t-1),4] <- trt[t]
 result[i+10*(t-1),5] <- i
 
 }  
 }
-write.csv(result, file="test1.csv", row.names=FALSE)
+write.csv(result, file="test1.csv", row.names=FALSE, quote=F)
