@@ -1,7 +1,7 @@
 install.packages("Metrics")
 library(Metrics)
 
-trt = c("ADG",)
+trt = c("ADG","ADG_Finisher")
 
 result <- matrix(NA, 10*length(trt), 3)
 for (t in 1:length(trt)) {
