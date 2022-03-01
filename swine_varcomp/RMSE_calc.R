@@ -1,7 +1,7 @@
 install.packages("Metrics")
 library(Metrics)
 
-trt = c("ADG","ADG_Finisher", "ADG_Nursery", "Average_Birthweight", "Average_Birthweight_f1", "AverageWW", "AverageWW_f1", "Backfat", "Birthweight", "LoinArea", "Losses", "Losses_f1", "NBA", "NBA_f1", "NumberWeaned", "NumberWeaned_f1", "TNB", "TNB_f1", "TotalTeatCount_females", "TotalTeatCount_males")
+trt = c("ADG","ADG_Finisher", "ADG_Nursery", "Average_Birthweight", "Average_Birthweight_f1", "AverageWW", "AverageWW_f1", "Backfat", "Birthweight", "LoinArea", "Losses", "Losses_f1", "NBA", "NBA_f1", "NW", "NW_f1", "TNB", "TNB_f1", "TotalTeatCount_females", "TotalTeatCount_males")
 
 result <- matrix(NA, 10*length(trt), 5)
 for (t in 1:length(trt)) {
